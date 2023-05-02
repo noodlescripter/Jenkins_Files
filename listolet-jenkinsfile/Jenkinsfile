@@ -21,7 +21,10 @@ pipeline{
             steps {
                 emailext (
                     subject: "Listolet Test Report",
-                    body: "Please see attached report",
+                    body: "Please find the attached report for Listolet Test Report.
+                    
+                    Note: Download the report and open it in browser to see the report properly.
+                    ",
                     attachmentsPattern: "**/Report/report_*.html",
                     to: "hamim.alam.personal@gmail.com"
                 )
