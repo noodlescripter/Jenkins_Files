@@ -1,0 +1,32 @@
+pipeline{
+    agent{
+        any
+    }
+    tools{
+        maven 'Maven 3.6.3'
+    }
+    stages{
+        stage('Getting latest image from listolet branch'){
+            steps{
+                git branch: 'listolet', url: https://github.com/alamhamim/qa_library_selenium.git'
+            }
+        }
+        stage('Running the test cases'){
+            steps{
+                bat 'mvn clean test -DsuiteXmlFile=suites/runner.xml'
+            }
+        }
+        stage('Email Report to Job Owner') {
+            steps {
+                // Send an email with the test report
+                emailext (
+                    subject: "Listolet Test Report",
+                    body: "Please see attached report",
+                    attachmentsPattern: "**/Report/report_.html",
+                    to: "hamim.alam.personal@gmail.com"
+                )
+            }
+        }
+    }
+
+}
