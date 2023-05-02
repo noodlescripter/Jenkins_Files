@@ -14,7 +14,7 @@ pipeline{
         }
         stage('Publishing HTML REPORT (LISTOLET)'){
             steps {
-                publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: false, reportDir: '**/Report', reportFiles: 'report_*.html', reportName: 'LISTOLET Report', reportTitles: 'Test Report'])
+                publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: false, reportDir: '/Report', reportFiles: 'report_*.html', reportName: 'LISTOLET Report', reportTitles: 'Test Report'])
             }
         }
         stage('Email Report to Job Owner') {
